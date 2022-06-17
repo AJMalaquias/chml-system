@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        var pessoa = new Pessoa("Anselmo João Malaquias", LocalDate.of(1992, 3, 20), Sexo.MASCULINO);
+        var pessoa = new Pessoa("Adroaldo Oseias da Conceicao Malaquias", LocalDate.of(2020, 6, 17), Sexo.MASCULINO);
         System.out.println(pessoa);
     }
 }

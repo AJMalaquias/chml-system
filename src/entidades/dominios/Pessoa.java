@@ -38,6 +38,24 @@ public class Pessoa {
     }
 
     public Integer getIdade() {
+        var dataActual = LocalDate.now();
+
+        Integer mesNascimento = dataDeNascimento.getMonthValue();
+        Integer mesActual = dataActual.getMonthValue();
+        Integer diaNascimento = dataDeNascimento.getDayOfMonth();
+        Integer diaActual = dataActual.getDayOfMonth();
+
+        if (dataDeNascimento.getYear() > dataActual.getYear() || mesNascimento > mesActual || diaNascimento > diaActual) {
+            throw new IllegalArgumentException("Data inválida!\nA data de nascimento não pode ser uma data futura.");
+        }
+
+        if (mesNascimento >= mesActual) {
+            if (dataDeNascimento.getDayOfMonth() < dataActual.getDayOfMonth()) {
+                idade = (dataActual.getYear() - dataDeNascimento.getYear()) - 1;
+                return idade;
+            }
+        }
+        idade = dataActual.getYear() - dataDeNascimento.getYear();
         return idade;
     }
 
@@ -51,10 +69,10 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa: " +
-                "Nome: " + getNome() +
-                " - Data de nascimento: " + getDataDeNascimento() +
-                " - Idade: " + getIdade() + " anos" +
-                " - Sexo: " + getSexo().getValor();
+        return "===Pessoa===".toUpperCase() +
+                "\nNome: " + getNome() +
+                "\nData de nascimento: " + getDataDeNascimento() +
+                "\nIdade: " + getIdade() + (getIdade() == 1 ? " ano" : " anos") +
+                "\nSexo: " + getSexo().getValor();
     }
 }
