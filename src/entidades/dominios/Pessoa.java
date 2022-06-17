@@ -50,7 +50,7 @@ public class Pessoa {
         }
 
         if (mesNascimento >= mesActual) {
-            if (dataDeNascimento.getDayOfMonth() < dataActual.getDayOfMonth()) {
+            if (diaNascimento < diaActual) {
                 idade = (dataActual.getYear() - dataDeNascimento.getYear()) - 1;
                 return idade;
             }
