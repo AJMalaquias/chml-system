@@ -45,8 +45,11 @@ public class Pessoa {
         Integer diaNascimento = dataDeNascimento.getDayOfMonth();
         Integer diaActual = dataActual.getDayOfMonth();
 
-        if (dataDeNascimento.getYear() > dataActual.getYear() || mesNascimento > mesActual || diaNascimento > diaActual) {
-            throw new IllegalArgumentException("Data inválida!\nA data de nascimento não pode ser uma data futura.");
+        if (dataDeNascimento.getYear() > dataActual.getYear()) {
+            if (mesNascimento > mesActual) {
+                if (diaNascimento > diaActual)
+                    throw new IllegalArgumentException("Data inválida!\nA data de nascimento não pode ser uma data futura.");
+            }
         }
 
         if (mesNascimento >= mesActual) {
@@ -69,8 +72,7 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "===Pessoa===".toUpperCase() +
-                "\nNome: " + getNome() +
+        return "Nome: " + getNome() +
                 "\nData de nascimento: " + getDataDeNascimento() +
                 "\nIdade: " + getIdade() + (getIdade() == 1 ? " ano" : " anos") +
                 "\nSexo: " + getSexo().getValor();
